@@ -1,4 +1,4 @@
-package com.gomezrondon.kafka.kafkawordcound;
+package com.gomezrondon.kafka.kafkawordcount;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -20,17 +20,17 @@ import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 @EnableBinding(WordCountBinder.class)
-public class KafkaWordCoundApplication implements ApplicationRunner {
+public class KafkaWordCountApplication implements ApplicationRunner {
 
 	private Log log = LogFactory.getLog(getClass());
 	private final MessageChannel wordCountOut;
 
-	public KafkaWordCoundApplication(WordCountBinder binding) {
+	public KafkaWordCountApplication(WordCountBinder binding) {
 		this.wordCountOut = binding.wordCountOut();
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(KafkaWordCoundApplication.class, args);
+		SpringApplication.run(KafkaWordCountApplication.class, args);
 	}
 
 

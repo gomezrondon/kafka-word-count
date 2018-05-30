@@ -1,4 +1,4 @@
-package com.gomezrondon.kafka.kafkawordcound;
+package com.gomezrondon.kafka.kafkawordcount;
 
 import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.messaging.MessageChannel;
