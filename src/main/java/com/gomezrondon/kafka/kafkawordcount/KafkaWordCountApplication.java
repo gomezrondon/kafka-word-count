@@ -41,10 +41,12 @@ public class KafkaWordCountApplication implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 
-		List<String> typeOperation = Arrays.asList("this is a Despoito"," no etiendo Retiro","claro que si Cancelacion","despacito comop no PagoTDC","solo una palabra renovacion");
-
+		//List<String> typeOperation = Arrays.asList("this is a Despoito"," no etiendo Retiro","claro que si Cancelacion","despacito comop no PagoTDC","solo una palabra renovacion");
+		List<String> typeOperation = Arrays.asList("this is a Despoito");
+		final int[] count = {0};
 		Runnable runnable =()->{
-			String rOperation = typeOperation.get(new Random().nextInt(typeOperation.size()));
+
+			String rOperation = typeOperation.get(count[0]);
 			Message<String> message = MessageBuilder
 					.withPayload(rOperation)
 					.setHeader(KafkaHeaders.MESSAGE_KEY, rOperation.getBytes())
@@ -56,7 +58,12 @@ public class KafkaWordCountApplication implements ApplicationRunner {
 				log.error(e);
 			}
 
-
+			count[0]++;
+			/*
+			if(count[0]> (typeOperation.size()-1)){
+				count[0]=0; // reset counter
+			}
+			*/
 		};
 
 		Executors.newScheduledThreadPool(1).scheduleAtFixedRate(runnable, 1, 1, TimeUnit.SECONDS);
